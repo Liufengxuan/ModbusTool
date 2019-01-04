@@ -74,10 +74,10 @@ namespace MainForm
 
 
             string str = t.Text.Replace(" ", "");
-            for (int i = 0; i < str.Length; i++)
+            for (int i = 1; i <= str.Length; i++)
             {
-                sb.Append(str[i]);
-                if (i != 0 && i % 2 == 0||(i==1))
+                sb.Append(str[i-1]);
+                if ((i != 0 && i % 2 == 0 ))
                 {
                     sb.Append(" ");
                     Selection++;

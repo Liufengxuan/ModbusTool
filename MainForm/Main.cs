@@ -350,6 +350,18 @@ namespace MainForm
                     case "btn_ReadInt16":
                         ShowMsgToReadRegion(mbClient.ReadInt16(addr).ToString());
                         break;
+                    case "btn_ReadInt32":
+                        ShowMsgToReadRegion(mbClient.ReadInt32(addr).ToString());
+                        break;
+                    case "btn_ReadUInt16":
+                        ShowMsgToReadRegion(mbClient.ReadUInt16(addr).ToString());
+                        break;
+                    case "btn_ReadUInt32":
+                        ShowMsgToReadRegion(mbClient.ReadUInt32(addr).ToString());
+                        break;
+                    case "btn_ReadCoil":
+                        ShowMsgToReadRegion(mbClient.ReadCoil(addr).ToString());
+                        break;
                     default: return;
                 }
             }
@@ -373,27 +385,6 @@ namespace MainForm
 
         #endregion
 
-        private void Rtb_Address_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 0x20) e.KeyChar = (char)0;  //禁止空格键  
-            if ((e.KeyChar == 0x2D) && (((TextBox)sender).Text.Length == 0)) return;   //处理负数  
-            if (e.KeyChar > 0x20)
-            {
-                try
-                {
-                    double.Parse(((TextBox)sender).Text + e.KeyChar.ToString());
-                }
-                catch
-                {
-                    e.KeyChar = (char)0;   //处理非法字符  
-                }
-            }
-
-        }
-
-        private void Rtb_Address_TextChanged(object sender, EventArgs e)
-        {
-         
-        }
+     
     }
 }

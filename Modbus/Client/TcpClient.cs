@@ -133,7 +133,14 @@ namespace Modbus.Client
 
         public double ReadDouble(string address)
         {
-            throw new NotImplementedException();
+            HslCommunication.OperateResult<double> rst;
+            rst = TCP.ReadDouble(address);
+            if (rst.IsSuccess)
+            {
+                return rst.Content;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return 0;
         }
 
         public float ReadFloat(string address, ushort length)
@@ -143,7 +150,14 @@ namespace Modbus.Client
 
         public float ReadFloat(string address)
         {
-            throw new NotImplementedException();
+            HslCommunication.OperateResult<float> rst;
+            rst = TCP.ReadFloat(address);
+            if (rst.IsSuccess)
+            {
+                return rst.Content;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return 0;
         }
 
         public short ReadInt16(string address)
@@ -172,7 +186,14 @@ namespace Modbus.Client
 
         public int ReadInt32(string address)
         {
-            throw new NotImplementedException();
+            HslCommunication.OperateResult<int> rst;
+            rst = TCP.ReadInt32(address);
+            if (rst.IsSuccess)
+            {
+                return rst.Content;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return 0;
         }
 
         public int ReadInt32(string address, ushort length)
@@ -197,7 +218,14 @@ namespace Modbus.Client
 
         public ushort ReadUInt16(string address)
         {
-            throw new NotImplementedException();
+            HslCommunication.OperateResult<ushort> rst;
+            rst = TCP.ReadUInt16(address);
+            if (rst.IsSuccess)
+            {
+                return rst.Content;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return 0;
         }
 
         public ushort[] ReadUInt16(string address, ushort length)
@@ -212,7 +240,14 @@ namespace Modbus.Client
 
         public uint ReadUInt32(string address)
         {
-            throw new NotImplementedException();
+            HslCommunication.OperateResult<uint> rst;
+            rst = TCP.ReadUInt32(address);
+            if (rst.IsSuccess)
+            {
+                return rst.Content;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return 0;
         }
 
         public ulong ReadUInt64(string address)
