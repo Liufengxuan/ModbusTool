@@ -1,0 +1,11 @@
+C:\Users\LFX\Desktop\mb\Modbus\bin\Release\Modbus.dll
+C:\Users\LFX\Desktop\mb\Modbus\bin\Release\Modbus.pdb
+C:\Users\LFX\Desktop\mb\Modbus\bin\Release\HslCommunication.dll
+C:\Users\LFX\Desktop\mb\Modbus\bin\Release\Newtonsoft.Json.dll
+C:\Users\LFX\Desktop\mb\Modbus\bin\Release\HslCommunication.xml
+C:\Users\LFX\Desktop\mb\Modbus\bin\Release\Newtonsoft.Json.xml
+C:\Users\LFX\Desktop\mb\Modbus\obj\Release\Modbus.csprojAssemblyReference.cache
+C:\Users\LFX\Desktop\mb\Modbus\obj\Release\Modbus.csproj.CoreCompileInputs.cache
+C:\Users\LFX\Desktop\mb\Modbus\obj\Release\Modbus.csproj.CopyComplete
+C:\Users\LFX\Desktop\mb\Modbus\obj\Release\Modbus.dll
+C:\Users\LFX\Desktop\mb\Modbus\obj\Release\Modbus.pdb

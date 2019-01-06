@@ -31,3 +31,14 @@ C:\Users\LFX\Desktop\ModbusTool\Modbus\obj\Debug\Modbus.csproj.CopyComplete
 C:\Users\LFX\Desktop\ModbusTool\Modbus\obj\Debug\Modbus.dll
 C:\Users\LFX\Desktop\ModbusTool\Modbus\obj\Debug\Modbus.pdb
 C:\Users\LFX\Desktop\ModbusTool\Modbus\obj\Debug\Modbus.csprojAssemblyReference.cache
+C:\Users\LFX\Desktop\mb\Modbus\bin\Debug\Modbus.dll
+C:\Users\LFX\Desktop\mb\Modbus\bin\Debug\Modbus.pdb
+C:\Users\LFX\Desktop\mb\Modbus\bin\Debug\HslCommunication.dll
+C:\Users\LFX\Desktop\mb\Modbus\bin\Debug\Newtonsoft.Json.dll
+C:\Users\LFX\Desktop\mb\Modbus\bin\Debug\HslCommunication.xml
+C:\Users\LFX\Desktop\mb\Modbus\bin\Debug\Newtonsoft.Json.xml
+C:\Users\LFX\Desktop\mb\Modbus\obj\Debug\Modbus.csprojAssemblyReference.cache
+C:\Users\LFX\Desktop\mb\Modbus\obj\Debug\Modbus.csproj.CoreCompileInputs.cache
+C:\Users\LFX\Desktop\mb\Modbus\obj\Debug\Modbus.csproj.CopyComplete
+C:\Users\LFX\Desktop\mb\Modbus\obj\Debug\Modbus.dll
+C:\Users\LFX\Desktop\mb\Modbus\obj\Debug\Modbus.pdb

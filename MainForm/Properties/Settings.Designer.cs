@@ -121,7 +121,7 @@ namespace MainForm.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("22899")]
+        [global::System.Configuration.DefaultSettingValueAttribute("28192")]
         public string Ttb_Port {
             get {
                 return ((string)(this["Ttb_Port"]));

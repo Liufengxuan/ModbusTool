@@ -81,6 +81,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.timer_Read = new System.Windows.Forms.Timer(this.components);
+            this.da = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.gb_ModbusContent.SuspendLayout();
@@ -90,6 +91,7 @@
             this.tabControl_Client.SuspendLayout();
             this.tabPage_RTU.SuspendLayout();
             this.tabPage_TCP.SuspendLayout();
+            this.da.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -191,9 +193,8 @@
             // 
             // gb_Read
             // 
-            this.gb_Read.Controls.Add(this.panel_ContinuousRead);
+            this.gb_Read.Controls.Add(this.da);
             this.gb_Read.Controls.Add(this.btn_ReadFloat);
-            this.gb_Read.Controls.Add(this.cb_ContinuousRead);
             this.gb_Read.Controls.Add(this.btn_ReadDouble);
             this.gb_Read.Controls.Add(this.btn_ReadCoil);
             this.gb_Read.Controls.Add(this.btn_ReadUInt32);
@@ -215,13 +216,14 @@
             // 
             // panel_ContinuousRead
             // 
-            this.panel_ContinuousRead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.panel_ContinuousRead.BackColor = System.Drawing.Color.Transparent;
+            this.panel_ContinuousRead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_ContinuousRead.Controls.Add(this.btn_ReadTimerStop);
             this.panel_ContinuousRead.Controls.Add(this.label11);
             this.panel_ContinuousRead.Controls.Add(this.label12);
             this.panel_ContinuousRead.Controls.Add(this.tb_period);
             this.panel_ContinuousRead.Enabled = false;
-            this.panel_ContinuousRead.Location = new System.Drawing.Point(248, 38);
+            this.panel_ContinuousRead.Location = new System.Drawing.Point(8, 49);
             this.panel_ContinuousRead.Name = "panel_ContinuousRead";
             this.panel_ContinuousRead.Size = new System.Drawing.Size(142, 63);
             this.panel_ContinuousRead.TabIndex = 6;
@@ -285,13 +287,13 @@
             // cb_ContinuousRead
             // 
             this.cb_ContinuousRead.AutoSize = true;
-            this.cb_ContinuousRead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.cb_ContinuousRead.Location = new System.Drawing.Point(248, 18);
+            this.cb_ContinuousRead.BackColor = System.Drawing.Color.Transparent;
+            this.cb_ContinuousRead.Location = new System.Drawing.Point(10, 26);
             this.cb_ContinuousRead.Margin = new System.Windows.Forms.Padding(2);
             this.cb_ContinuousRead.Name = "cb_ContinuousRead";
-            this.cb_ContinuousRead.Size = new System.Drawing.Size(116, 19);
+            this.cb_ContinuousRead.Size = new System.Drawing.Size(56, 19);
             this.cb_ContinuousRead.TabIndex = 3;
-            this.cb_ContinuousRead.Text = "启用循环读取";
+            this.cb_ContinuousRead.Text = "启用";
             this.cb_ContinuousRead.UseVisualStyleBackColor = false;
             this.cb_ContinuousRead.CheckedChanged += new System.EventHandler(this.cb_ContinuousRead_CheckedChanged);
             // 
@@ -717,6 +719,17 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "IP地址:";
             // 
+            // da
+            // 
+            this.da.Controls.Add(this.panel_ContinuousRead);
+            this.da.Controls.Add(this.cb_ContinuousRead);
+            this.da.Location = new System.Drawing.Point(228, 19);
+            this.da.Name = "da";
+            this.da.Size = new System.Drawing.Size(159, 120);
+            this.da.TabIndex = 6;
+            this.da.TabStop = false;
+            this.da.Text = "循环读取";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -746,6 +759,8 @@
             this.tabPage_RTU.PerformLayout();
             this.tabPage_TCP.ResumeLayout(false);
             this.tabPage_TCP.PerformLayout();
+            this.da.ResumeLayout(false);
+            this.da.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -802,5 +817,6 @@
         private System.Windows.Forms.Button btn_ReadDouble;
         private System.Windows.Forms.Button btn_ReadTimerStop;
         private System.Windows.Forms.Panel panel_ContinuousRead;
+        private System.Windows.Forms.GroupBox da;
     }
 }

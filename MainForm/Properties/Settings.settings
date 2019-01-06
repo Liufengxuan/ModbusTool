@@ -27,7 +27,7 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="Ttb_Port" Type="System.String" Scope="User">
-      <Value Profile="(Default)">22899</Value>
+      <Value Profile="(Default)">28192</Value>
     </Setting>
   </Settings>
 </SettingsFile>

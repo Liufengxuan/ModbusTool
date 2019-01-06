@@ -393,6 +393,7 @@ namespace Modbus.Client
             string rst = "";
             try
             {
+                rtu.ReceiveTimeout = 500;
                 OperateResult<byte[]> read = rtu.ReadBase(HslCommunication.Serial.SoftCRC16.CRC16(HslCommunication.BasicFramework.SoftBasic.HexStringToBytes(sendContent)));
                 if (read.IsSuccess)
                 {
