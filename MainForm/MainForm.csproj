@@ -7,7 +7,7 @@
     <ProjectGuid>{4C25EF88-40EA-4DDF-8F1A-FA4D56FE4694}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MainForm</RootNamespace>
-    <AssemblyName>MainForm</AssemblyName>
+    <AssemblyName>Modbus测试</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

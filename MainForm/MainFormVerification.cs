@@ -61,29 +61,25 @@ namespace MainForm
         /// <param name="e"></param>
         public static void InputModbusContent(object sender, EventArgs e)
         {
-            
-
-        
-
-        
-
             TextBox t = (TextBox)sender;
             StringBuilder sb = new StringBuilder();
             int Selection = t.SelectionStart;
             int spaceNum = 0;
+            char s = '_';
 
 
-            string str = t.Text.Replace(" ", "");
+            string str = t.Text.Replace(s.ToString(), "");
             for (int i = 1; i <= str.Length; i++)
             {
                 sb.Append(str[i-1]);
                 if ((i != 0 && i % 2 == 0 ))
                 {
-                    sb.Append(" ");
+                    if (i == str.Length) continue;
+                    sb.Append(s);
                     Selection++;
                 }
             }
-           Selection= Selection - t.Text.Split(' ').Length+1;
+           Selection= Selection - t.Text.Split(s).Length+1;
             t.Text = sb.ToString();
             t.SelectionStart = Selection < 0 ? 0:Selection ;
 

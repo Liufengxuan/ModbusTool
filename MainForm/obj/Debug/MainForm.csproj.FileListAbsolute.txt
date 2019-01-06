@@ -50,9 +50,6 @@ D:\WorkSpace\ModbusTool\ModbusTool\MainForm\obj\Debug\MainForm.exe
 D:\WorkSpace\ModbusTool\ModbusTool\MainForm\obj\Debug\MainForm.pdb
 C:\Users\msfen\Desktop\ModbusTool\MainForm\bin\Debug\Modbus.dll
 C:\Users\msfen\Desktop\ModbusTool\MainForm\bin\Debug\Modbus.pdb
-C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\MainForm.exe.config
-C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\MainForm.exe
-C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\MainForm.pdb
 C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\MaterialSkin.dll
 C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\Modbus.dll
 C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\Newtonsoft.Json.dll
@@ -66,5 +63,8 @@ C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\MainForm.Properties.Resources
 C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\MainForm.csproj.GenerateResource.cache
 C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\MainForm.csproj.CoreCompileInputs.cache
 C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\MainForm.csproj.CopyComplete
-C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\MainForm.exe
-C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\MainForm.pdb
+C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\Modbus测试.exe.config
+C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\Modbus测试.exe
+C:\Users\LFX\Desktop\ModbusTool\MainForm\bin\Debug\Modbus测试.pdb
+C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\Modbus测试.exe
+C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\Modbus测试.pdb

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modbus;
 using Modbus.Client;
+using System.Threading;
 
 namespace MainForm
 {
@@ -52,8 +53,22 @@ namespace MainForm
             {
                 tb_InfoDisplay.Text += info;
             }
-            tb_InfoDisplay.SelectionStart = tb_InfoDisplay.Text.Length - 1;
-            tb_InfoDisplay.ScrollToCaret();
+
+            if (tb_InfoDisplay.InvokeRequired)
+            {
+                // 当一个控件的InvokeRequired属性值为真时，说明有一个创建它以外的线程想访问它
+                Action<string> actionDelegate = (x) => { tb_InfoDisplay.SelectionStart += tb_InfoDisplay.Text.Length - 1; tb_InfoDisplay.ScrollToCaret(); };
+                // 或者
+                // Action<string> actionDelegate = delegate(string txt) { this.label2.Text = txt; };
+                tb_InfoDisplay.Invoke(actionDelegate, info);
+            }
+            else
+            {
+                tb_InfoDisplay.SelectionStart = tb_InfoDisplay.Text.Length - 1;
+                tb_InfoDisplay.ScrollToCaret();
+
+            }
+
         }
         private void ShowMsg(string info, bool emptyMessages)
         {
@@ -84,9 +99,6 @@ namespace MainForm
         {
 
             info = "[" + DateTime.Now.ToLongTimeString() + "]: " + info + "\r\n";
-
-
-
             if (tb_ReadInfo.InvokeRequired)
             {
                 // 当一个控件的InvokeRequired属性值为真时，说明有一个创建它以外的线程想访问它
@@ -99,8 +111,19 @@ namespace MainForm
             {
                 tb_ReadInfo.Text += info;
             }
-            tb_ReadInfo.SelectionStart = tb_ReadInfo.Text.Length - 1;
-            tb_ReadInfo.ScrollToCaret();
+            if (tb_ReadInfo.InvokeRequired)
+            {
+                // 当一个控件的InvokeRequired属性值为真时，说明有一个创建它以外的线程想访问它
+                Action<string> actionDelegate = (x) => { tb_ReadInfo.SelectionStart += tb_ReadInfo.Text.Length - 1; tb_ReadInfo.ScrollToCaret(); };
+                // 或者
+                // Action<string> actionDelegate = delegate(string txt) { this.label2.Text = txt; };
+                tb_ReadInfo.Invoke(actionDelegate, info);
+            }
+            else
+            {
+                tb_ReadInfo.SelectionStart = tb_ReadInfo.Text.Length - 1;
+                tb_ReadInfo.ScrollToCaret();
+            }
         }
         private void ShowMsgToWriteRegion(string info)
         {
@@ -319,48 +342,86 @@ namespace MainForm
 
 
         #region 功能区域
+
+        #region  功能区域-Read  
+        private class ReadModel
+        {
+            public string BtnName { get; set; }
+            public string Address { get; set; }
+            public static bool IsRun { get; set; } = false;
+            public static System.Threading.Timer threadTimer { get; set; } = null;
+        }
+        
         private void ReadHandle(object sender, EventArgs e)
         {
+            ReadModel readModel = new ReadModel();
             try
             {
-                Button btn = (Button)sender;
-                Read(btn.Name);
+                readModel.Address = Convert.ToInt32(tb_ReadAddr.Text, 16).ToString();
             }
-            catch (Exception ex)
+            catch
             {
-                ShowMsg(ex.Message);
-            }
-        }
-        private void Read(string btnName)
-        {
-            string addr = "";
-            try
-            {
-                addr = Convert.ToInt32(tb_ReadAddr.Text, 16).ToString();
-            }
-            catch {
 
                 ShowMsg("请输入正确的16进制地址");
                 return;
             }
             try
             {
-                switch (btnName)
+                Button btn = (Button)sender;
+                readModel.BtnName = btn.Name;
+
+
+
+
+                if (cb_ContinuousRead.Checked)
+                {
+                    if (ReadModel.threadTimer == null)
+                    {
+                        ReadModel.threadTimer = new System.Threading.Timer(new System.Threading.TimerCallback(Read), readModel,0,Convert.ToInt32( tb_period.Text));
+                        ReadModel.IsRun = true;
+                        btn_ReadTimerStop.Enabled = true;
+                        ShowMsg("已启用循环读取");
+                    }
+                  
+                }
+                else {
+                    Read(readModel);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ShowMsg(ex.Message);
+            }
+        }
+        private void Read(object obj)
+        {
+            ReadModel para = (ReadModel)obj;
+            try
+            {
+                switch (para.BtnName)
                 {
                     case "btn_ReadInt16":
-                        ShowMsgToReadRegion(mbClient.ReadInt16(addr).ToString());
+                        ShowMsgToReadRegion(mbClient.ReadInt16(para.Address).ToString());
                         break;
                     case "btn_ReadInt32":
-                        ShowMsgToReadRegion(mbClient.ReadInt32(addr).ToString());
+                        ShowMsgToReadRegion(mbClient.ReadInt32(para.Address).ToString());
                         break;
                     case "btn_ReadUInt16":
-                        ShowMsgToReadRegion(mbClient.ReadUInt16(addr).ToString());
+                        ShowMsgToReadRegion(mbClient.ReadUInt16(para.Address).ToString());
                         break;
                     case "btn_ReadUInt32":
-                        ShowMsgToReadRegion(mbClient.ReadUInt32(addr).ToString());
+                        ShowMsgToReadRegion(mbClient.ReadUInt32(para.Address).ToString());
                         break;
                     case "btn_ReadCoil":
-                        ShowMsgToReadRegion(mbClient.ReadCoil(addr).ToString());
+                        ShowMsgToReadRegion(mbClient.ReadCoil(para.Address).ToString());
+                        break;
+                    case "btn_ReadFloat":
+                        ShowMsgToReadRegion(mbClient.ReadFloat(para.Address).ToString());
+                        break;
+                    case "btn_ReadDouble":
+                        ShowMsgToReadRegion(mbClient.ReadDouble(para.Address).ToString());
                         break;
                     default: return;
                 }
@@ -371,20 +432,69 @@ namespace MainForm
             }
         }
 
+        private void btn_ReadTimerStop_Click(object sender, EventArgs e)
+        {
+            if (ReadModel.threadTimer != null)
+            {
+                ReadModel.threadTimer.Change(-1, 2);
+                ReadModel.threadTimer = null;
+                btn_ReadTimerStop.Enabled = false ;
+                ShowMsg("已终止循环读取");
+            }
+        }
+        #endregion
 
-
-
+        #region 功能区域-Write
 
         #endregion
 
-        #region 报文操作区域
+        #region 功能区域-报文操作区域
         private void btn_Send_Click(object sender, EventArgs e)
         {
             ShowMsgToContentRegion(mbClient.ContentTest(tb_ContentInput.Text));
         }
 
+
+
+
+
+
+
+
         #endregion
 
-     
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void cb_ContinuousRead_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_ContinuousRead.Checked)
+            {
+                panel_ContinuousRead.Enabled = true;
+            }
+            else {
+                panel_ContinuousRead.Enabled = false;
+            }
+        }
     }
 }
