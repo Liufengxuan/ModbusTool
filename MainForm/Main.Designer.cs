@@ -39,13 +39,14 @@
             this.gb_Write = new System.Windows.Forms.GroupBox();
             this.tb_WriteInfo = new System.Windows.Forms.TextBox();
             this.gb_Read = new System.Windows.Forms.GroupBox();
+            this.da = new System.Windows.Forms.GroupBox();
             this.panel_ContinuousRead = new System.Windows.Forms.Panel();
             this.btn_ReadTimerStop = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tb_period = new System.Windows.Forms.TextBox();
-            this.btn_ReadFloat = new System.Windows.Forms.Button();
             this.cb_ContinuousRead = new System.Windows.Forms.CheckBox();
+            this.btn_ReadFloat = new System.Windows.Forms.Button();
             this.btn_ReadDouble = new System.Windows.Forms.Button();
             this.btn_ReadCoil = new System.Windows.Forms.Button();
             this.btn_ReadUInt32 = new System.Windows.Forms.Button();
@@ -81,24 +82,34 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.timer_Read = new System.Windows.Forms.Timer(this.components);
-            this.da = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel_ContinuousSend = new System.Windows.Forms.Panel();
+            this.btn_SendTimerStop = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tb_SendPeriod = new System.Windows.Forms.TextBox();
+            this.cb_ContinuousSend = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.gb_ModbusContent.SuspendLayout();
             this.gb_Write.SuspendLayout();
             this.gb_Read.SuspendLayout();
+            this.da.SuspendLayout();
             this.panel_ContinuousRead.SuspendLayout();
             this.tabControl_Client.SuspendLayout();
             this.tabPage_RTU.SuspendLayout();
             this.tabPage_TCP.SuspendLayout();
-            this.da.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.panel_ContinuousSend.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.tb_InfoDisplay);
             this.panel1.Controls.Add(this.tabControl_Client);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 56);
@@ -120,9 +131,10 @@
             // 
             // gb_ModbusContent
             // 
+            this.gb_ModbusContent.Controls.Add(this.groupBox2);
             this.gb_ModbusContent.Controls.Add(this.tb_ContentInput);
-            this.gb_ModbusContent.Controls.Add(this.btn_Send);
             this.gb_ModbusContent.Controls.Add(this.tb_ContextDisplay);
+            this.gb_ModbusContent.Controls.Add(this.btn_Send);
             this.gb_ModbusContent.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.gb_ModbusContent.Location = new System.Drawing.Point(7, 341);
             this.gb_ModbusContent.Margin = new System.Windows.Forms.Padding(2);
@@ -137,18 +149,19 @@
             // 
             this.tb_ContentInput.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tb_ContentInput.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_ContentInput.Location = new System.Drawing.Point(6, 21);
+            this.tb_ContentInput.Location = new System.Drawing.Point(4, 17);
             this.tb_ContentInput.Margin = new System.Windows.Forms.Padding(2);
             this.tb_ContentInput.Name = "tb_ContentInput";
-            this.tb_ContentInput.Size = new System.Drawing.Size(373, 24);
+            this.tb_ContentInput.Size = new System.Drawing.Size(537, 24);
             this.tb_ContentInput.TabIndex = 7;
             // 
             // btn_Send
             // 
-            this.btn_Send.Location = new System.Drawing.Point(145, 70);
+            this.btn_Send.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_Send.Location = new System.Drawing.Point(545, 17);
             this.btn_Send.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Send.Name = "btn_Send";
-            this.btn_Send.Size = new System.Drawing.Size(233, 54);
+            this.btn_Send.Size = new System.Drawing.Size(53, 112);
             this.btn_Send.TabIndex = 6;
             this.btn_Send.Text = "发送";
             this.btn_Send.UseVisualStyleBackColor = true;
@@ -158,12 +171,12 @@
             // 
             this.tb_ContextDisplay.BackColor = System.Drawing.Color.Black;
             this.tb_ContextDisplay.ForeColor = System.Drawing.Color.Aqua;
-            this.tb_ContextDisplay.Location = new System.Drawing.Point(382, 16);
+            this.tb_ContextDisplay.Location = new System.Drawing.Point(4, 42);
             this.tb_ContextDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.tb_ContextDisplay.Multiline = true;
             this.tb_ContextDisplay.Name = "tb_ContextDisplay";
             this.tb_ContextDisplay.ReadOnly = true;
-            this.tb_ContextDisplay.Size = new System.Drawing.Size(420, 110);
+            this.tb_ContextDisplay.Size = new System.Drawing.Size(537, 87);
             this.tb_ContextDisplay.TabIndex = 5;
             // 
             // gb_Write
@@ -213,6 +226,17 @@
             this.gb_Read.TabIndex = 5;
             this.gb_Read.TabStop = false;
             this.gb_Read.Text = "读取";
+            // 
+            // da
+            // 
+            this.da.Controls.Add(this.panel_ContinuousRead);
+            this.da.Controls.Add(this.cb_ContinuousRead);
+            this.da.Location = new System.Drawing.Point(228, 19);
+            this.da.Name = "da";
+            this.da.Size = new System.Drawing.Size(159, 120);
+            this.da.TabIndex = 6;
+            this.da.TabStop = false;
+            this.da.Text = "循环读取";
             // 
             // panel_ContinuousRead
             // 
@@ -272,18 +296,6 @@
             this.tb_period.TabIndex = 1;
             this.tb_period.Text = "1000";
             // 
-            // btn_ReadFloat
-            // 
-            this.btn_ReadFloat.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ReadFloat.Location = new System.Drawing.Point(118, 48);
-            this.btn_ReadFloat.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_ReadFloat.Name = "btn_ReadFloat";
-            this.btn_ReadFloat.Size = new System.Drawing.Size(51, 25);
-            this.btn_ReadFloat.TabIndex = 17;
-            this.btn_ReadFloat.Text = "Float";
-            this.btn_ReadFloat.UseVisualStyleBackColor = true;
-            this.btn_ReadFloat.Click += new System.EventHandler(this.ReadHandle);
-            // 
             // cb_ContinuousRead
             // 
             this.cb_ContinuousRead.AutoSize = true;
@@ -297,10 +309,24 @@
             this.cb_ContinuousRead.UseVisualStyleBackColor = false;
             this.cb_ContinuousRead.CheckedChanged += new System.EventHandler(this.cb_ContinuousRead_CheckedChanged);
             // 
+            // btn_ReadFloat
+            // 
+            this.btn_ReadFloat.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_ReadFloat.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_ReadFloat.Location = new System.Drawing.Point(139, 50);
+            this.btn_ReadFloat.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_ReadFloat.Name = "btn_ReadFloat";
+            this.btn_ReadFloat.Size = new System.Drawing.Size(51, 25);
+            this.btn_ReadFloat.TabIndex = 17;
+            this.btn_ReadFloat.Text = "Float";
+            this.btn_ReadFloat.UseVisualStyleBackColor = true;
+            this.btn_ReadFloat.Click += new System.EventHandler(this.ReadHandle);
+            // 
             // btn_ReadDouble
             // 
             this.btn_ReadDouble.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ReadDouble.Location = new System.Drawing.Point(118, 77);
+            this.btn_ReadDouble.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_ReadDouble.Location = new System.Drawing.Point(139, 79);
             this.btn_ReadDouble.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ReadDouble.Name = "btn_ReadDouble";
             this.btn_ReadDouble.Size = new System.Drawing.Size(51, 25);
@@ -312,7 +338,8 @@
             // btn_ReadCoil
             // 
             this.btn_ReadCoil.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ReadCoil.Location = new System.Drawing.Point(4, 105);
+            this.btn_ReadCoil.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_ReadCoil.Location = new System.Drawing.Point(25, 107);
             this.btn_ReadCoil.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ReadCoil.Name = "btn_ReadCoil";
             this.btn_ReadCoil.Size = new System.Drawing.Size(55, 25);
@@ -324,7 +351,8 @@
             // btn_ReadUInt32
             // 
             this.btn_ReadUInt32.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ReadUInt32.Location = new System.Drawing.Point(63, 77);
+            this.btn_ReadUInt32.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_ReadUInt32.Location = new System.Drawing.Point(84, 79);
             this.btn_ReadUInt32.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ReadUInt32.Name = "btn_ReadUInt32";
             this.btn_ReadUInt32.Size = new System.Drawing.Size(51, 25);
@@ -336,7 +364,8 @@
             // btn_ReadUInt16
             // 
             this.btn_ReadUInt16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ReadUInt16.Location = new System.Drawing.Point(63, 48);
+            this.btn_ReadUInt16.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_ReadUInt16.Location = new System.Drawing.Point(84, 50);
             this.btn_ReadUInt16.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ReadUInt16.Name = "btn_ReadUInt16";
             this.btn_ReadUInt16.Size = new System.Drawing.Size(51, 25);
@@ -348,7 +377,8 @@
             // btn_ReadInt32
             // 
             this.btn_ReadInt32.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ReadInt32.Location = new System.Drawing.Point(4, 76);
+            this.btn_ReadInt32.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_ReadInt32.Location = new System.Drawing.Point(25, 78);
             this.btn_ReadInt32.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ReadInt32.Name = "btn_ReadInt32";
             this.btn_ReadInt32.Size = new System.Drawing.Size(55, 25);
@@ -379,7 +409,8 @@
             // btn_ReadInt16
             // 
             this.btn_ReadInt16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_ReadInt16.Location = new System.Drawing.Point(4, 48);
+            this.btn_ReadInt16.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_ReadInt16.Location = new System.Drawing.Point(25, 50);
             this.btn_ReadInt16.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ReadInt16.Name = "btn_ReadInt16";
             this.btn_ReadInt16.Size = new System.Drawing.Size(55, 25);
@@ -406,12 +437,12 @@
             this.tb_InfoDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_InfoDisplay.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_InfoDisplay.ForeColor = System.Drawing.Color.Red;
-            this.tb_InfoDisplay.Location = new System.Drawing.Point(514, 3);
+            this.tb_InfoDisplay.Location = new System.Drawing.Point(5, 15);
             this.tb_InfoDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.tb_InfoDisplay.Multiline = true;
             this.tb_InfoDisplay.Name = "tb_InfoDisplay";
             this.tb_InfoDisplay.ReadOnly = true;
-            this.tb_InfoDisplay.Size = new System.Drawing.Size(301, 78);
+            this.tb_InfoDisplay.Size = new System.Drawing.Size(322, 60);
             this.tb_InfoDisplay.TabIndex = 4;
             // 
             // tabControl_Client
@@ -719,16 +750,98 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "IP地址:";
             // 
-            // da
+            // groupBox1
             // 
-            this.da.Controls.Add(this.panel_ContinuousRead);
-            this.da.Controls.Add(this.cb_ContinuousRead);
-            this.da.Location = new System.Drawing.Point(228, 19);
-            this.da.Name = "da";
-            this.da.Size = new System.Drawing.Size(159, 120);
-            this.da.TabIndex = 6;
-            this.da.TabStop = false;
-            this.da.Text = "循环读取";
+            this.groupBox1.Controls.Add(this.tb_InfoDisplay);
+            this.groupBox1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.Location = new System.Drawing.Point(484, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(332, 78);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "运行日志";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.panel_ContinuousSend);
+            this.groupBox2.Controls.Add(this.cb_ContinuousSend);
+            this.groupBox2.Location = new System.Drawing.Point(613, 17);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(174, 112);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "循环发送";
+            // 
+            // panel_ContinuousSend
+            // 
+            this.panel_ContinuousSend.BackColor = System.Drawing.Color.Transparent;
+            this.panel_ContinuousSend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_ContinuousSend.Controls.Add(this.btn_SendTimerStop);
+            this.panel_ContinuousSend.Controls.Add(this.label13);
+            this.panel_ContinuousSend.Controls.Add(this.label14);
+            this.panel_ContinuousSend.Controls.Add(this.tb_SendPeriod);
+            this.panel_ContinuousSend.Enabled = false;
+            this.panel_ContinuousSend.Location = new System.Drawing.Point(9, 42);
+            this.panel_ContinuousSend.Name = "panel_ContinuousSend";
+            this.panel_ContinuousSend.Size = new System.Drawing.Size(146, 64);
+            this.panel_ContinuousSend.TabIndex = 6;
+            // 
+            // btn_SendTimerStop
+            // 
+            this.btn_SendTimerStop.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_SendTimerStop.Enabled = false;
+            this.btn_SendTimerStop.ForeColor = System.Drawing.Color.Red;
+            this.btn_SendTimerStop.Location = new System.Drawing.Point(11, 31);
+            this.btn_SendTimerStop.Name = "btn_SendTimerStop";
+            this.btn_SendTimerStop.Size = new System.Drawing.Size(129, 28);
+            this.btn_SendTimerStop.TabIndex = 4;
+            this.btn_SendTimerStop.Text = "停止";
+            this.btn_SendTimerStop.UseVisualStyleBackColor = false;
+            this.btn_SendTimerStop.Click += new System.EventHandler(this.btn_SendTimerStop_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(8, 7);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "间隔";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(103, 7);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(37, 15);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "毫秒";
+            // 
+            // tb_SendPeriod
+            // 
+            this.tb_SendPeriod.BackColor = System.Drawing.SystemColors.Info;
+            this.tb_SendPeriod.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_SendPeriod.Location = new System.Drawing.Point(48, 6);
+            this.tb_SendPeriod.Margin = new System.Windows.Forms.Padding(2);
+            this.tb_SendPeriod.Name = "tb_SendPeriod";
+            this.tb_SendPeriod.Size = new System.Drawing.Size(51, 17);
+            this.tb_SendPeriod.TabIndex = 1;
+            this.tb_SendPeriod.Text = "1000";
+            // 
+            // cb_ContinuousSend
+            // 
+            this.cb_ContinuousSend.AutoSize = true;
+            this.cb_ContinuousSend.BackColor = System.Drawing.Color.Transparent;
+            this.cb_ContinuousSend.Location = new System.Drawing.Point(11, 19);
+            this.cb_ContinuousSend.Margin = new System.Windows.Forms.Padding(2);
+            this.cb_ContinuousSend.Name = "cb_ContinuousSend";
+            this.cb_ContinuousSend.Size = new System.Drawing.Size(56, 19);
+            this.cb_ContinuousSend.TabIndex = 3;
+            this.cb_ContinuousSend.Text = "启用";
+            this.cb_ContinuousSend.UseVisualStyleBackColor = false;
+            this.cb_ContinuousSend.CheckedChanged += new System.EventHandler(this.cb_ContinuousRead_CheckedChanged);
             // 
             // Main
             // 
@@ -740,11 +853,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "         Modbus测试工具";
+            this.Text = "Modbus测试工具";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResizeEnd += new System.EventHandler(this.Main_ResizeEnd);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.gb_ModbusContent.ResumeLayout(false);
             this.gb_ModbusContent.PerformLayout();
@@ -752,6 +864,8 @@
             this.gb_Write.PerformLayout();
             this.gb_Read.ResumeLayout(false);
             this.gb_Read.PerformLayout();
+            this.da.ResumeLayout(false);
+            this.da.PerformLayout();
             this.panel_ContinuousRead.ResumeLayout(false);
             this.panel_ContinuousRead.PerformLayout();
             this.tabControl_Client.ResumeLayout(false);
@@ -759,8 +873,12 @@
             this.tabPage_RTU.PerformLayout();
             this.tabPage_TCP.ResumeLayout(false);
             this.tabPage_TCP.PerformLayout();
-            this.da.ResumeLayout(false);
-            this.da.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.panel_ContinuousSend.ResumeLayout(false);
+            this.panel_ContinuousSend.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -818,5 +936,13 @@
         private System.Windows.Forms.Button btn_ReadTimerStop;
         private System.Windows.Forms.Panel panel_ContinuousRead;
         private System.Windows.Forms.GroupBox da;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel panel_ContinuousSend;
+        private System.Windows.Forms.Button btn_SendTimerStop;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox tb_SendPeriod;
+        private System.Windows.Forms.CheckBox cb_ContinuousSend;
     }
 }

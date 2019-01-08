@@ -144,6 +144,8 @@ namespace MainForm
             {
                 tb_WriteInfo.Text += info;
             }
+
+
             tb_WriteInfo.SelectionStart = tb_WriteInfo.Text.Length - 1;
             tb_WriteInfo.ScrollToCaret();
         }
@@ -166,8 +168,20 @@ namespace MainForm
             {
                 tb_ContextDisplay.Text += info;
             }
-            tb_ContextDisplay.SelectionStart = tb_ContextDisplay.Text.Length - 1;
-            tb_ContextDisplay.ScrollToCaret();
+            if (tb_ContextDisplay.InvokeRequired)
+            {
+                // 当一个控件的InvokeRequired属性值为真时，说明有一个创建它以外的线程想访问它
+                Action<string> actionDelegate = (x) => { tb_ContextDisplay.SelectionStart += tb_ContextDisplay.Text.Length - 1; tb_ContextDisplay.ScrollToCaret(); };
+                // 或者
+                // Action<string> actionDelegate = delegate(string txt) { this.label2.Text = txt; };
+                tb_ContextDisplay.Invoke(actionDelegate, info);
+            }
+            else
+            {
+                tb_ContextDisplay.SelectionStart = tb_ContextDisplay.Text.Length - 1;
+                tb_ContextDisplay.ScrollToCaret();
+            }
+         
         }
 
         #endregion
@@ -449,12 +463,48 @@ namespace MainForm
         #endregion
 
         #region 功能区域-报文操作区域
-        private void btn_Send_Click(object sender, EventArgs e)
+        private class SendModel
         {
-            ShowMsgToContentRegion(mbClient.ContentTest(tb_ContentInput.Text));
+            public string content { get; set; }
+            public static bool IsRun { get; set; } = false;
+            public static System.Threading.Timer threadTimer { get; set; } = null;
         }
 
 
+
+        private void btn_Send_Click(object sender, EventArgs e)
+        {
+            SendModel sendModel = new SendModel();
+            sendModel.content = tb_ContentInput.Text;
+
+            if (cb_ContinuousSend.Checked)
+            {
+                SendModel.threadTimer=new System.Threading.Timer(new System.Threading.TimerCallback(Send), sendModel, 0, Convert.ToInt32(tb_SendPeriod.Text));
+                SendModel.IsRun = true;
+                btn_SendTimerStop.Enabled = true;
+                ShowMsg("已启用循环读取报文");
+            }
+            else {
+                ShowMsgToContentRegion(mbClient.ContentTest(tb_ContentInput.Text));
+            }
+         
+        }
+        private void Send(object sendModel)
+        {
+            SendModel s = (SendModel)sendModel;
+            ShowMsgToContentRegion(mbClient.ContentTest(s.content));
+        }
+
+        private void btn_SendTimerStop_Click(object sender, EventArgs e)
+        {
+            if (SendModel.threadTimer != null)
+            {
+                SendModel.threadTimer.Change(-1, 2);
+                SendModel.threadTimer = null;
+                btn_SendTimerStop.Enabled = false;
+                ShowMsg("已终止循环读取报文");
+            }
+        }
 
 
 
@@ -495,6 +545,20 @@ namespace MainForm
             else {
                 panel_ContinuousRead.Enabled = false;
             }
+
+
+
+
+            if (cb_ContinuousSend.Checked)
+            {
+                panel_ContinuousSend.Enabled = true;
+            }
+            else
+            {
+                panel_ContinuousSend.Enabled = false;
+            }
         }
+
+     
     }
 }
