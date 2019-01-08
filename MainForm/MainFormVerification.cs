@@ -72,7 +72,7 @@ namespace MainForm
             for (int i = 1; i <= str.Length; i++)
             {
                 sb.Append(str[i-1]);
-                if ((i != 0 && i % 2 == 0 ))
+                if ((i != 0 && i % 4 == 0 ))
                 {
                     if (i == str.Length) continue;
                     sb.Append(s);

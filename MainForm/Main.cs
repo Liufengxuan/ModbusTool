@@ -1,5 +1,4 @@
-﻿using MaterialSkin;
-using MaterialSkin.Controls;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,18 +15,14 @@ using System.Threading;
 
 namespace MainForm
 {
-    public partial class Main : MaterialForm
+    public partial class Main : Form
     {
      
 
         public Main()
         {
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
-            FormBorderStyle = FormBorderStyle.None;//设置无边框的窗口样式
+          
         }
         #region 通知消息处理
         /// <summary>
@@ -91,8 +86,19 @@ namespace MainForm
             {
                 tb_InfoDisplay.Text += info;
             }
-            tb_InfoDisplay.SelectionStart = tb_InfoDisplay.Text.Length - 1;
-            tb_InfoDisplay.ScrollToCaret();
+            if (tb_InfoDisplay.InvokeRequired)
+            {
+                // 当一个控件的InvokeRequired属性值为真时，说明有一个创建它以外的线程想访问它
+                Action<string> actionDelegate = (x) => { tb_InfoDisplay.SelectionStart += tb_InfoDisplay.Text.Length - 1; tb_InfoDisplay.ScrollToCaret(); };
+                // 或者
+                // Action<string> actionDelegate = delegate(string txt) { this.label2.Text = txt; };
+                tb_InfoDisplay.Invoke(actionDelegate, info);
+            }
+            else
+            {
+                tb_InfoDisplay.SelectionStart = tb_InfoDisplay.Text.Length - 1;
+                tb_InfoDisplay.ScrollToCaret();
+            }
         }
 
         private void ShowMsgToReadRegion(string info)
@@ -144,10 +150,19 @@ namespace MainForm
             {
                 tb_WriteInfo.Text += info;
             }
-
-
-            tb_WriteInfo.SelectionStart = tb_WriteInfo.Text.Length - 1;
-            tb_WriteInfo.ScrollToCaret();
+            if (tb_WriteInfo.InvokeRequired)
+            {
+                // 当一个控件的InvokeRequired属性值为真时，说明有一个创建它以外的线程想访问它
+                Action<string> actionDelegate = (x) => { tb_WriteInfo.SelectionStart += tb_WriteInfo.Text.Length - 1; tb_WriteInfo.ScrollToCaret(); };
+                // 或者
+                // Action<string> actionDelegate = delegate(string txt) { this.label2.Text = txt; };
+                tb_WriteInfo.Invoke(actionDelegate, info);
+            }
+            else
+            {
+                tb_WriteInfo.SelectionStart = tb_WriteInfo.Text.Length - 1;
+                tb_WriteInfo.ScrollToCaret();
+            }
         }
         private void ShowMsgToContentRegion(string info)
         {
@@ -216,11 +231,7 @@ namespace MainForm
             //
 
         }
-        private void Main_ResizeEnd(object sender, EventArgs e)
-        {
-            this.Size = mainFormSize;
-
-        }
+      
         #endregion
 
         #region tabControl_Client 控件的事件和  通讯配置相关、通讯切换事件
@@ -459,6 +470,89 @@ namespace MainForm
         #endregion
 
         #region 功能区域-Write
+        private class WriteModel
+        {
+            public  int diZeng { get; set; }
+            public string btnName { get; set; }
+            public string address { get; set; }
+            public static int value { get; set; }
+            public static bool IsRun { get; set; } = false;
+            public static System.Threading.Timer threadTimer { get; set; } = null;
+        }
+        private void btn_WriteInt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                WriteModel writeModel = new WriteModel();
+                writeModel.address = tb_WriteAddr.Text;
+                WriteModel.value = Convert.ToInt32(tb_WriteValue.Text);
+                writeModel.btnName = ((Button)sender).Name;
+                writeModel.diZeng = Convert.ToInt32(tb_WriteDiZeng.Text);
+
+                if (!cb_ContinuousWrite.Checked)
+                {
+                    Write(writeModel);
+                }
+                else
+                {
+                    if (WriteModel.threadTimer == null)
+                    {
+                        WriteModel.threadTimer = new System.Threading.Timer(new System.Threading.TimerCallback(Write), writeModel, 0, Convert.ToInt32(tb_periodWrite.Text));
+                        WriteModel.IsRun = true;
+                        btn_WriteTimerStop.Enabled = true;
+                        ShowMsg("已启用循环写入");
+                    }
+
+                }
+            }
+            catch {
+                ShowMsg("请输入正确的值");
+            }       
+        }
+
+        private void Write(object wtiteModel)
+        {
+            try
+            {
+                WriteModel writeModel = (WriteModel)wtiteModel;
+                bool isSuccess = false;
+                switch (writeModel.btnName)
+                {
+                    case "btn_WriteInt":
+                        isSuccess = mbClient.Write(writeModel.address, WriteModel.value);
+                        break;
+                    default: return;
+                }
+                if (isSuccess)
+                {
+                    ShowMsgToWriteRegion("将值" + WriteModel.value + "写入到地址:" + writeModel.address + " - 成功！");
+                }
+                else
+                {
+                    ShowMsgToWriteRegion("将值" + WriteModel.value + "写入到地址:" + writeModel.address + " - 失败！");
+                }
+                if (writeModel.diZeng != 0)
+                {
+                    WriteModel.value += writeModel.diZeng;
+                }
+
+
+
+            }
+            catch(Exception ex) {
+                ShowMsg("执行写入出错:"+ex.Message);
+            }
+        }
+        private void btn_WriteTimerStop_Click(object sender, EventArgs e)
+        {
+            if (WriteModel.threadTimer != null)
+            {
+                WriteModel.threadTimer.Change(-1, 2);
+                WriteModel.threadTimer = null;
+                btn_WriteTimerStop.Enabled = false;
+                ShowMsg("已终止循环读取");
+            }
+        }
 
         #endregion
 
@@ -557,6 +651,17 @@ namespace MainForm
             {
                 panel_ContinuousSend.Enabled = false;
             }
+
+            if (cb_ContinuousWrite.Checked)
+            {
+                panel_ContinuousWrite.Enabled = true;
+            }
+            else
+            {
+                panel_ContinuousWrite.Enabled = false;
+            }
+
+
         }
 
      

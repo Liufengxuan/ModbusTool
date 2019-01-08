@@ -82,7 +82,7 @@ namespace Modbus
        
         void Write(string address, int[] values);
        
-        void Write(string address, int value);
+        bool Write(string address, int value);
        
         void Write(string address, short[] values);
      
