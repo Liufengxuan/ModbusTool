@@ -71,7 +71,6 @@ C:\Users\LFX\Desktop\ModbusTool\MainForm\obj\Debug\Modbus测试.pdb
 C:\Users\LFX\Desktop\mb\MainForm\bin\Debug\Modbus测试.exe.config
 C:\Users\LFX\Desktop\mb\MainForm\bin\Debug\Modbus测试.exe
 C:\Users\LFX\Desktop\mb\MainForm\bin\Debug\Modbus测试.pdb
-C:\Users\LFX\Desktop\mb\MainForm\bin\Debug\MaterialSkin.dll
 C:\Users\LFX\Desktop\mb\MainForm\bin\Debug\Modbus.dll
 C:\Users\LFX\Desktop\mb\MainForm\bin\Debug\Newtonsoft.Json.dll
 C:\Users\LFX\Desktop\mb\MainForm\bin\Debug\HslCommunication.dll

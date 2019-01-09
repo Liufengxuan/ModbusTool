@@ -220,7 +220,7 @@ namespace MainForm
 
             //注册过滤事件
             Rtb_Address.KeyPress += MainFormVerification.InputOnlyNumber;
-   
+     
             Rcb_BaudRate.KeyPress += MainFormVerification.InputOnlyNumber;
             Rtb_DataBit.KeyPress += MainFormVerification.InputOnlyNumber;
 
@@ -228,6 +228,9 @@ namespace MainForm
             tb_ContentInput.KeyPress += MainFormVerification.InputOnlyNumberAndLetter;
             tb_ContentInput.TextChanged += MainFormVerification.InputModbusContent;
 
+            tb_ReadAddr.KeyPress += MainFormVerification.InputOnlyNumberAndLetter;
+            tb_WriteAddr.KeyPress += MainFormVerification.InputOnlyNumberAndLetter;
+            tb_WriteValue.KeyPress += MainFormVerification.InputOnlyNumber;
             //
 
         }
@@ -484,7 +487,7 @@ namespace MainForm
             try
             {
                 WriteModel writeModel = new WriteModel();
-                writeModel.address = tb_WriteAddr.Text;
+                writeModel.address = Convert.ToInt32(tb_WriteAddr.Text, 16).ToString();
                 WriteModel.value = Convert.ToInt32(tb_WriteValue.Text);
                 writeModel.btnName = ((Button)sender).Name;
                 writeModel.diZeng = Convert.ToInt32(tb_WriteDiZeng.Text);
@@ -518,9 +521,13 @@ namespace MainForm
                 bool isSuccess = false;
                 switch (writeModel.btnName)
                 {
-                    case "btn_WriteInt":
+                    case "btn_WriteInt32":
                         isSuccess = mbClient.Write(writeModel.address, WriteModel.value);
                         break;
+
+                    //btn_WriteInt16
+                    //btn_WriteUInt16
+                    //btn_WriteUInt32
                     default: return;
                 }
                 if (isSuccess)
