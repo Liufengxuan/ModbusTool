@@ -317,9 +317,16 @@ namespace Modbus.Client
             throw new NotImplementedException();
         }
 
-        public void Write(string address, short value)
+        public bool Write(string address, short value)
         {
-            throw new NotImplementedException();
+            HslCommunication.OperateResult rst;
+            rst = TCP.Write(address, value);
+            if (rst.IsSuccess)
+            {
+                return true;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return false;
         }
 
         public void Write(string address, long[] values)
@@ -354,6 +361,30 @@ namespace Modbus.Client
             }
             MsgChannl.SendMsg(rst.Message);
             return "Exception";
+        }
+
+        public bool Write(string address, uint value)
+        {
+            HslCommunication.OperateResult rst;
+            rst = TCP.Write(address, value);
+            if (rst.IsSuccess)
+            {
+                return true;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return false;
+        }
+
+        public bool Write(string address, ushort value)
+        {
+            HslCommunication.OperateResult rst;
+            rst = TCP.Write(address, value);
+            if (rst.IsSuccess)
+            {
+                return true;
+            }
+            MsgChannl.SendMsg(rst.Message);
+            return false;
         }
     }
 }

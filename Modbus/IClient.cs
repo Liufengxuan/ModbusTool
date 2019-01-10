@@ -72,26 +72,24 @@ namespace Modbus
       
         void Write(string address, double[] values);
        
-        void Write(string address, double value);
+       // void Write(string address, double value);
        
         void Write(string address, float[] values);
       
-        void Write(string address, float value);
+        //void Write(string address, float value);
      
-        void Write(string address, long value);
+        //void Write(string address, long value);
        
-        void Write(string address, int[] values);
-       
-        bool Write(string address, int value);
-       
+        void Write(string address, int[] values);    
         void Write(string address, short[] values);
+
      
-        void Write(string address, short value);
        
         void Write(string address, long[] values);
-    
-
-
-
+        bool Write(string address, int value);
+  
+        bool Write(string address, short value);
+        bool Write(string address, ushort value);
+        bool Write(string address, uint value);
     }
 }

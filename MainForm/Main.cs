@@ -524,6 +524,16 @@ namespace MainForm
                     case "btn_WriteInt32":
                         isSuccess = mbClient.Write(writeModel.address, WriteModel.value);
                         break;
+                    case "btn_WriteInt16":
+                        isSuccess = mbClient.Write(writeModel.address, (short)WriteModel.value);
+                        break;
+                    case "btn_WriteUInt16":
+                        isSuccess = mbClient.Write(writeModel.address,  (ushort)WriteModel.value);
+                        break;
+                    case "btn_WriteUInt32":
+                        uint a = Convert.ToUInt32(WriteModel.value);
+                        isSuccess = mbClient.Write(writeModel.address, a);
+                        break;
 
                     //btn_WriteInt16
                     //btn_WriteUInt16
